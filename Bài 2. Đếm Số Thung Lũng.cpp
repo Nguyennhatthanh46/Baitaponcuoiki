@@ -30,27 +30,34 @@ int main(){
     cout << dem << endl;
 }
 
-#include <iostream>
-#include <cmath>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-#define MAX 200001
-int main(){
+
+int main()
+{
 
 int height = 0;
 int dem = 0;
-int k;cin>>k;
+int k;
+cin>>k;
 char kitu;
+bool xet = 0;
 for(int i = 0; i <k;i++){
     cin>>kitu;
     if(kitu == 'D'&&height==0){
-        dem++;
+        xet = 1;
+        height--;
     }
-    if(kitu == 'U' ){
+    else if(kitu == 'U' ){
         height++;
+    if(height==0&&xet){
+        dem++;
+        xet = 0;
     }
-    if(kitu =='D'){
+    }
+    else if(kitu =='D'){
         height--;
     }
 }cout<<dem;
 }
+
