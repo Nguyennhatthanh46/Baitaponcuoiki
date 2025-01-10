@@ -1,43 +1,28 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
-#define MAX 500
 
-int main()
-{
-    int n, m; cin >> n >> m;
-    int a[MAX][MAX];
-    for (int t = 0; t < n; t++)
-    {
-        for(int i = 0; i < m; i++)
-        {
-            cin >> a[t][i];
+int main() {
+    int n, m, res = 0, count = 1;
+    int a[500][500];
+    cin >> n >> m;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >>a[i][j];
         }
     }
-    int nv = 0, doi = 0;
-    for (int i = 0; i < n; i++)
-    {
-        for(int k = i+1; k <n; k++)
-        {
-            int dem = 0;
-            for (int j = 0; j < m; j++)
-            {
-                if (a[i][j] | a[k][j])
-                {
-                    dem++;
-                }
-
-                if (dem > nv)
-                {
-                    nv = dem;
-                    doi = 1;
-                }
-                else if(dem == nv)
-                {
-                    doi++;
-                }
+    for(int i = 0; i < n - 1; i++){
+        for(int j = i + 1; j < n; j++){
+            int x = 0;
+            int cnt = 0;
+            while(x < m){
+                if(a[i][x] || a[j][x]) cnt++;
+                x++;
             }
+            if(res == cnt) count++;
+            res = max(res, cnt);
         }
     }
-    cout << nv << endl << doi;
+    cout << res << endl << count;
     return 0;
 }
