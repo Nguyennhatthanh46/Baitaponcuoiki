@@ -20,7 +20,10 @@ int main() {
                 x++;
             }
             if(res == cnt) count++;
-            res = max(res, cnt);
+            if(cnt > res) {
+                res = max(res, cnt);
+                count = 1;
+            }
         }
     }
     cout << res << endl << count;
